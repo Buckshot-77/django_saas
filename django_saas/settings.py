@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_saas.apps.accounts.apps.AccountsConfig',
+    'django_saas.apps.user_messages.apps.UserMessagesConfig'
 ]
 
 
