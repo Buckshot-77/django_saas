@@ -11,7 +11,7 @@ class AccountCreate(generics.CreateAPIView):
 
 
 class UserList(generics.ListCreateAPIView):
-    name = 'user-list',
+    name = 'user-list'
     permission_classes = (
         permissions.IsAuthenticated,
     )
