@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_saas.apps.accounts.apps.AccountsConfig',
+    'django_saas.apps.user_messages.apps.UserMessagesConfig'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +72,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_saas.wsgi.application'
+
+AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = '/api/v1/accounts/users'
 
 
 # Database
