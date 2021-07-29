@@ -13,12 +13,12 @@ class UserMessageList(generics.ListCreateAPIView):
     queryset = UserMessage.objects.all()
 
     def perform_create(self, serializer):
+        user = self.request.user
         company_id = self.request.user.company_id
-        serializer.save(company_id=company_id)
+        serializer.save(company_id=company_id, from_user=user)
 
     def get_queryset(self):
-        company_id = self.request.user.company_id
-        return super().get_queryset().filter(company_id=company_id)
+        return UserMessage.objects.get_for_user(self.request.user)
 
 
 class UserMessageDetail(generics.RetrieveAPIView):
@@ -30,5 +30,4 @@ class UserMessageDetail(generics.RetrieveAPIView):
     queryset = UserMessage.objects.all()
 
     def get_queryset(self):
-        company_id = self.request.user.company_id
-        return super().get_queryset().filter(company_id=company_id)
+        return UserMessage.objects.get_for_user(self.request.user)
