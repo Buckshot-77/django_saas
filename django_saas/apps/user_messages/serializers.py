@@ -1,8 +1,9 @@
 from rest_framework import serializers
+from django_saas.core.serializers import CompanySafeSerializerMixin
 from .models import UserMessage
 
 
-class UserMessageSerializer(serializers.HyperlinkedModelSerializer):
+class UserMessageSerializer(CompanySafeSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UserMessage
         fields = (
@@ -12,4 +13,8 @@ class UserMessageSerializer(serializers.HyperlinkedModelSerializer):
             'to_user',
             'text',
             'date',
+        )
+
+        read_only_fields = (
+            'from_user',
         )
